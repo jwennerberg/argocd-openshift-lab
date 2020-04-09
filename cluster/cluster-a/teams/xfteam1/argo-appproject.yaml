@@ -15,10 +15,6 @@ spec:
   sourceRepos:
     - "*"
 
-  clusterResourceWhitelist:
-  - group: ''
-    kind: Namespace
-
   namespaceResourceBlacklist:
   - group: ''
     kind: ResourceQuota
