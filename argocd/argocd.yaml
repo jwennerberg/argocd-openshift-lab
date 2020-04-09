@@ -1,0 +1,10 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  dex:
+    image: quay.io/dexidp/dex
+    version: v2.22.0
+    openShiftOAuth: true

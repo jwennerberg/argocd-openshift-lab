@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-config-a
+spec:
+  destination:
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: cluster/cluster-a
+    repoURL: 'https://github.com/jwennerberg/argocd-openshift.git'
+    targetRevision: dev
+  project: default
