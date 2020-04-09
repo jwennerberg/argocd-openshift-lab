@@ -3,11 +3,19 @@ kind: Application
 metadata:
   name: cluster-config-a
 spec:
+  project: default
+
   destination:
     namespace: argocd
     server: 'https://kubernetes.default.svc'
+
   source:
     path: cluster/cluster-a
     repoURL: 'https://github.com/jwennerberg/argocd-openshift.git'
     targetRevision: dev
-  project: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    validate: true
