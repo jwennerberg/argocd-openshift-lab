@@ -6,4 +6,4 @@ bases:
   - teams/
 
 resources:
-  - argo-cluster-config.yaml
+  - argo-team-config.yaml
