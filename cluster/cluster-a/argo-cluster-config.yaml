@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-config-a
+  name: config-cluster-a
 spec:
   project: default
 
