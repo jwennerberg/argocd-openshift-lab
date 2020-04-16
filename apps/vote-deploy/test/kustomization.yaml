@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: argocd
 
+commonLabels:
+  env: test
+
 bases:
   - vote-api/
   - vote-ui/

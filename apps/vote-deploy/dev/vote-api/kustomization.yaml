@@ -4,5 +4,8 @@ kind: Kustomization
 namespace: argocd
 nameSuffix: "-dev"
 
+commonLabels:
+  env: dev
+
 bases:
   - ../../base/vote-api

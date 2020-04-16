@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: argocd
 
+commonLabels:
+  app: vote-ui
+
 resources:
   - vote-ui.yaml
 
