@@ -20,3 +20,5 @@ spec:
     kind: BuildConfig
     jsonPointers:
     - /spec/triggers/0/imageChange
+  syncPolicy:
+    automated: {}
