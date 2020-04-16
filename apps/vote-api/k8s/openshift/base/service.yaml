@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: api
+    app.kubernetes.io/component: api
+    app.kubernetes.io/instance: api
+    app.kubernetes.io/part-of: vote
+  name: api
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000
+  selector:
+    app: api

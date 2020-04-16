@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ui
+    app.kubernetes.io/component: ui
+    app.kubernetes.io/instance: ui
+    app.kubernetes.io/part-of: vote
+  name: ui
+spec:
+  type: ClusterIP
+  ports:
+    - name: 8080-tcp
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: ui

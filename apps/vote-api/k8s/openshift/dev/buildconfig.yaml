@@ -1,0 +1,39 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: master
+    app.openshift.io/vcs-uri: https://github.com/jwennerberg/vote-api.git
+  labels:
+    app: api
+    app.kubernetes.io/component: api
+    app.kubernetes.io/instance: api
+    app.kubernetes.io/name: golang
+    app.kubernetes.io/part-of: vote
+    app.openshift.io/runtime: golang
+    app.openshift.io/runtime-version: 1.11.5
+  name: api
+spec:
+  nodeSelector: null
+  runPolicy: Serial
+  source:
+    git:
+      uri: https://github.com/jwennerberg/vote-api.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: golang:1.11.5
+        namespace: openshift
+    type: Source
+  output:
+    to:
+      kind: ImageStreamTag
+      name: api:latest
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  triggers:
+  - imageChange:
+    type: ImageChange
+  - type: ConfigChange

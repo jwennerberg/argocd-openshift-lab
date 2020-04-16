@@ -1,0 +1,17 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  labels:
+    app: ui
+    app.kubernetes.io/component: ui
+    app.kubernetes.io/instance: ui
+    app.kubernetes.io/name: python
+    app.kubernetes.io/part-of: vote
+    app.openshift.io/runtime: python
+  name: ui
+spec:
+  tags:
+  - name: latest
+    from:
+      kind: DockerImage
+      name: quay.io/openshift-pipeline/vote-ui:latest

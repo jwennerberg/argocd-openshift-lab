@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vote-ui
+spec:
+  destination:
+    namespace: vote-dev
+    server: https://kubernetes.default.svc
+  project: xfteam1
+  source:
+    path: apps/vote-ui/k8s/openshift/base
+    repoURL: 'https://github.com/jwennerberg/argocd-openshift.git'
+    targetRevision: dev
+  ignoreDifferences:
+  - group: apps.openshift.io
+    kind: DeploymentConfig
+    jsonPointers:
+    - /spec/template/spec/containers/0/image
+  - group: build.openshift.io
+    kind: BuildConfig
+    jsonPointers:
+    - /spec/triggers/0/imageChange
+

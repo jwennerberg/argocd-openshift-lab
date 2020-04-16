@@ -1,0 +1,35 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: ui
+    app.kubernetes.io/component: ui
+    app.kubernetes.io/instance: ui
+    app.kubernetes.io/name: python
+    app.kubernetes.io/part-of: vote
+    app.openshift.io/runtime: python
+  name: ui
+spec:
+  nodeSelector: null
+  runPolicy: Serial
+  source:
+    git:
+      uri: https://github.com/jwennerberg/vote-ui.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: python:3.6
+        namespace: openshift
+    type: Source
+  output:
+    to:
+      kind: ImageStreamTag
+      name: ui:latest
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  triggers:
+  - imageChange:
+    type: ImageChange
+  - type: ConfigChange

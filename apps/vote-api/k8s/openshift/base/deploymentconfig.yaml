@@ -1,0 +1,61 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: master
+    app.openshift.io/vcs-uri: https://github.com/jwennerberg/vote-api.git
+  labels:
+    app: api
+    app.kubernetes.io/component: api
+    app.kubernetes.io/instance: vote-api
+    app.kubernetes.io/name: golang
+    app.kubernetes.io/part-of: vote
+    app.openshift.io/runtime: golang
+    app.openshift.io/runtime-version: 1.11.5
+  name: api
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: api
+    deploymentconfig: api
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: api
+        deploymentconfig: api
+    spec:
+      containers:
+      - image: ""
+        imagePullPolicy: Always
+        name: api
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - api
+      from:
+        kind: ImageStreamTag
+        name: api:latest
+    type: ImageChange
+  - type: ConfigChange

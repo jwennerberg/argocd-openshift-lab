@@ -1,0 +1,15 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: api
+spec:
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - api
+      from:
+        kind: ImageStreamTag
+        name: api:test
+    type: ImageChange
+  - type: ConfigChange

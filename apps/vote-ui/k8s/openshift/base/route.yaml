@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: ui
+    app.kubernetes.io/component: ui
+    app.kubernetes.io/instance: ui
+    app.kubernetes.io/part-of: vote
+  name: ui
+spec:
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: ui
+    weight: 100
