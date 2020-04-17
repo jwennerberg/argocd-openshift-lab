@@ -10,7 +10,7 @@ spec:
     server: 'https://kubernetes.default.svc'
 
   source:
-    path: cluster/cluster-a
+    path: cluster/cluster-a/teams
     repoURL: 'https://github.com/jwennerberg/argocd-openshift.git'
     targetRevision: dev
 
