@@ -3,3 +3,6 @@ kind: Kustomization
 
 bases:
   - ../../base/operators
+
+resources:
+  - argo-operators.yaml
