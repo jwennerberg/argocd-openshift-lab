@@ -6,5 +6,4 @@ metadata:
 spec:
   channel: alpha
   name: argocd-operator
-  source: community-operators
-  sourceNamespace: openshift-marketplace
+  source: argocd-catalog
