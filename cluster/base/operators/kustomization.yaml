@@ -3,3 +3,6 @@ kind: Kustomization
 
 bases:
   - openshift-pipelines-operator/
+
+resources:
+  - argo-operators.yaml

@@ -1,0 +1,9 @@
+- op: replace
+  path: /metadata/name
+  value: operators-cluster-a
+- op: replace
+  path: /spec/destination/server
+  value: 'https://kubernetes.default.svc'
+- op: replace
+  path: /spec/source/path
+  value: cluster/cluster-a/operators

@@ -4,5 +4,10 @@ kind: Kustomization
 bases:
   - ../../base/operators
 
-resources:
-  - argo-operators.yaml
+patchesJson6902:
+- target:
+    group: argoproj.io
+    version: v1alpha1
+    kind: Application
+    name: operators
+  path: patch-argo-app.yaml
