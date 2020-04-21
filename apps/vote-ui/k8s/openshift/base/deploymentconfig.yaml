@@ -44,6 +44,10 @@ spec:
         - containerPort: 9090
           protocol: TCP
         env:
+        - name: OPTION_A
+          value: "Red"
+        - name: OPTION_B
+          value: "Blue"
         - name: VOTING_API_SERVICE_HOST
           value: "api"
         - name: VOTING_API_SERVICE_PORT
