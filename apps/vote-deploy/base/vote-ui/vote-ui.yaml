@@ -9,7 +9,7 @@ spec:
   project: xfteam1
   source:
     path: apps/vote-ui/k8s/openshift/base
-    repoURL: 'https://github.com/jwennerberg/argocd-openshift.git'
+    repoURL: 'https://github.com/jwennerberg/argocd-openshift-lab.git'
     targetRevision: dev
   ignoreDifferences:
   - group: apps.openshift.io

@@ -12,7 +12,7 @@ spec:
 
   source:
     path: cluster/cluster-b/teams
-    repoURL: 'https://github.com/jwennerberg/argocd-openshift.git'
+    repoURL: 'https://github.com/jwennerberg/argocd-openshift-lab.git'
     targetRevision: dev
 
   syncPolicy:
