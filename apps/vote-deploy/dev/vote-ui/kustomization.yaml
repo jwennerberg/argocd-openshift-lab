@@ -10,3 +10,5 @@ commonLabels:
 bases:
   - ../../base/vote-ui
 
+patches:
+  - patch-vote-ui.yaml

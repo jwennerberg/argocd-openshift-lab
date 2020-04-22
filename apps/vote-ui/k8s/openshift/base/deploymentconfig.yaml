@@ -43,11 +43,9 @@ spec:
           protocol: TCP
         - containerPort: 9090
           protocol: TCP
-        env:
-        - name: VOTING_API_SERVICE_HOST
-          value: "api"
-        - name: VOTING_API_SERVICE_PORT
-          value: "9000"
+        envFrom:
+        - configMapRef:
+            name: vote-ui-config
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File

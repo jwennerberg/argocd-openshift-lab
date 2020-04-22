@@ -1,0 +1,9 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vote-ui
+spec:
+  destination:
+    namespace: vote-dev
+  source:
+    path: apps/vote-ui/k8s/openshift/dev

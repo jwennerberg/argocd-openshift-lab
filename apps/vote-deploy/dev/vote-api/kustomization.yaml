@@ -9,3 +9,6 @@ commonLabels:
 
 bases:
   - ../../base/vote-api
+
+patches:
+  - patch-vote-api.yaml

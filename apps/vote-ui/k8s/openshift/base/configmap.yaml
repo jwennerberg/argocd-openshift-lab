@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vote-ui-config
+data:
+  VOTING_API_SERVICE_HOST: "api"
+  VOTING_API_SERVICE_PORT: "9000"
