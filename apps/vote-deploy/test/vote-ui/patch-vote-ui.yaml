@@ -6,4 +6,4 @@ spec:
   destination:
     namespace: vote-test
   source:
-    path: apps/vote-ui/k8s/openshift/base
+    path: apps/vote-ui/k8s/openshift/test
