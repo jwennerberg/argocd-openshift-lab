@@ -4,8 +4,8 @@ metadata:
   name: argocd-app-link
 spec:
   applicationMenu:
-    imageURL: https://argocd-server-argocd.apps-crc.testing/assets/images/logo.png
+    imageURL: https://argocd-server-argocd.apps.demo.a.wnn.se/assets/images/logo.png
     section: Deployment
-  href: https://argocd-server-argocd.apps-crc.testing/
+  href: https://argocd-server-argocd.apps.demo.a.wnn.se/
   location: ApplicationMenu
   text: ArgoCD

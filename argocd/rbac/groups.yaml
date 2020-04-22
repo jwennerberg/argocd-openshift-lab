@@ -4,3 +4,4 @@ metadata:
   name: argocdadmins
 users:
 - ocpadmin
+- admin
