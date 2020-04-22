@@ -4,3 +4,5 @@ metadata:
   name: vote-ui-config
 data:
   ENV: dev
+  OPTION_A: "Duck"
+  OPTION_B: "Chicken"
