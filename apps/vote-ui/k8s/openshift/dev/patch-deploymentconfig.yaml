@@ -4,6 +4,6 @@
     - name: ENV
       value: dev
     - name: OPTION_A
-      value: Duck
-    - name: OPTION_B
       value: Chicken
+    - name: OPTION_B
+      value: Duck
