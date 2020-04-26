@@ -5,7 +5,7 @@ bases:
   - ../base
 
 patchesJson6902:
-- path: patch-deploymentconfig.yaml
+- path: deploymentconfig-envs.yaml
   target:
     group: apps.openshift.io
     version: v1
