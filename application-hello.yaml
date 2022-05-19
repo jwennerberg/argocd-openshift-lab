@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello
+  namespace: project-x-mgmt
+spec:
+  destination:
+    namespace: project-x
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: topology-spread-contraints/schedule-anyway
+    repoURL: https://github.com/jwennerberg/openshift-scheduling-examples
+    targetRevision: nonamespace
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - Validate=false

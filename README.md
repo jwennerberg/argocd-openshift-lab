@@ -1,23 +1,68 @@
-# Lab: Argo CD with OpenShift
+## OpenShift GitOps - ArgoCD for app teams
 
-This repository contains examples and guides on using Argo CD with Red Hat OpenShift.
+In this demo I am using the OpenShift GitOps operator to setup a dedicated
+ArgoCD instance which will be used to manage applications in a specific set
+of namespaces.
 
-The architecture used was choosed to showcase how the multi-tenant approach in OpenShift can be extended to Argo CD.
 
-## Argo CD setup in short
-* Argo CD is deployed in OpenShift using an Operator
-* Argo CD instance is configured for multi-tenancy
-  - Same instance used by both cluster admins and application teams
-* Integrated with OpenShift authentication
-  - Users and groups in OpenShift are used for Argo CD RBAC
+### Prerequisites
+These steps requires `cluster-admin` privileges.
 
-![ArgoCD on OpenShift](/docs/assets/argocd-openshift-lab.png)
+1. Install OpenShift GitOps operator
 
-## Guides
+```bash
+oc apply --kustomize https://github.com/redhat-cop/gitops-catalog/openshift-gitops-operator/overlays/latest
+```
 
-### Install and configure Argo CD in OpenShift
+2. Configure namespaces
 
-1. [Install the Argo CD Operator](/docs/_01-argocd-operator.md)
-2. [Create Argo CD instance](/docs/_02-argocd-instance-install.md)
-3. [Add cluster configuation with Argo CD](/docs/_03-argocd-cluster-config.md)
-4. [Developer: Deploy applications with Argo CD](/docs/_04-argocd-create-applications.md)
+Create three namespaces for demo purposes.
+- `project-x-mgmt`: management namespace where ArgoCD will be deployed
+- `project-x`: application namespace
+- `project-y`: application namespace
+
+The application namespaces are configured with the label `argocd.argoproj.io/managed-by: project-x-mgmt` so they can be managed from the ArgoCD instance in `project-x-mgmt`.
+
+```
+oc apply -f namespace.yaml
+```
+
+Give user `user1` the admin role:
+
+```
+oc policy add cluster-role-to-user admin user1 -n project-x-mgmt
+oc policy add cluster-role-to-user admin user1 -n project-x
+oc policy add cluster-role-to-user admin user1 -n project-y
+```
+
+### Deploy ArgoCD
+
+The following steps only requires access to namesapces `project-x-mgmt`, `project-x` and `project-y`.
+
+1. Deploy ArgoCD instance
+
+```
+oc apply -f argocd.yaml -n project-x-mgmt
+```
+
+2. Add `Application` to deploy in `project-x` namespace
+
+```
+oc apply -f application-hello.yaml -n project-x-mgmt
+```
+
+3. Add `Application` to deploy in `project-y` namespace
+
+```
+oc apply -f application-hello-y.yaml -n project-x-mgmt
+```
+
+### Validate ArgoCD applications
+
+1. Get the ArgoCD route
+
+```
+oc get route argocd-server -n project-x-mgmt -o jsonpath='https://{.spec.host}'
+```
+
+2. Log in with openshift user `user1` and verify that applications are managed in both `project-x` and `project-y`

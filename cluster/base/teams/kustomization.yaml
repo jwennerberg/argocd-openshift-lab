@@ -1,7 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-resources:
-  - xfteam1/namespace.yaml
-  - xfteam1/groups.yaml
-  - xfteam1/rolebinding.yaml
