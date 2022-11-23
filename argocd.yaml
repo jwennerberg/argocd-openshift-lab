@@ -10,8 +10,8 @@ spec:
   rbac:
     defaultPolicy: ''
     policy: |
-      g, system:cluster-admins, role:admin
       g, project-x-admins, role:admin
+      g, user1, role:admin
     scopes: '[groups]'
   redis: {}
   repo: {}
@@ -29,5 +29,4 @@ spec:
       - '*'
       kinds:
       - TaskRun
-      - PipelineRun        
-
+      - PipelineRun
