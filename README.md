@@ -21,18 +21,10 @@ Create three namespaces for demo purposes.
 - `project-x`: application namespace
 - `project-y`: application namespace
 
-The application namespaces are configured with the label `argocd.argoproj.io/managed-by: project-x-mgmt` so they can be managed from the ArgoCD instance in `project-x-mgmt`.
+The application namespaces are configured with the label `argocd.argoproj.io/managed-by: project-x-mgmt` so they can be managed from the ArgoCD instance in `project-x-mgmt`. Non-privileged user `user1` will be added as namespace admin.
 
 ```
-oc apply -f namespace.yaml
-```
-
-Give user `user1` the admin role:
-
-```
-oc policy add cluster-role-to-user admin user1 -n project-x-mgmt
-oc policy add cluster-role-to-user admin user1 -n project-x
-oc policy add cluster-role-to-user admin user1 -n project-y
+oc apply --kustomize cluster/prep/
 ```
 
 ### Deploy ArgoCD
@@ -66,3 +58,5 @@ oc get route argocd-server -n project-x-mgmt -o jsonpath='https://{.spec.host}'
 ```
 
 2. Log in with openshift user `user1` and verify that applications are managed in both `project-x` and `project-y`
+
+<img src=assets/argocd-apps-status.png width="800" />
